@@ -1,0 +1,276 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+/* Dark luxury custom palette */
+$primary-palette: mat.define-palette(mat.$green-palette, 400, 200, 700);
+$accent-palette:  mat.define-palette(mat.$amber-palette,  400, 200, 700);
+$warn-palette:    mat.define-palette(mat.$red-palette,    400);
+
+$theme: mat.define-dark-theme((
+  color: (
+    primary:  $primary-palette,
+    accent:   $accent-palette,
+    warn:     $warn-palette,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: "'Inter', sans-serif"
+  ),
+  density: 0
+));
+
+@include mat.all-component-themes($theme);
+
+/* ============================================
+   VARIABLES — Animalia Dark Luxury
+   ============================================ */
+:root {
+  --bg-dark:        #0b0f0c;
+  --bg-card:        rgba(255,255,255,0.05);
+  --glass:          rgba(255,255,255,0.06);
+  --glass-border:   rgba(255,255,255,0.08);
+  --glass-hover:    rgba(255,255,255,0.10);
+  --text:           #ffffff;
+  --muted:          rgba(255,255,255,0.6);
+  --accent:         #6ee76e;
+  --accent-dim:     rgba(110,231,110,0.15);
+  --danger:         rgba(255,80,80,0.85);
+  --radius-card:    20px;
+  --radius-btn:     50px;
+  --shadow-card:    0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   MATERIAL OVERRIDES — forzar dark theme
+   ============================================ */
+
+/* Fondo base de panels y cards */
+.mat-mdc-card,
+.mat-drawer,
+.mat-drawer-container,
+.mat-drawer-content,
+.mat-mdc-dialog-surface {
+  background: var(--bg-dark) !important;
+  color: var(--text) !important;
+}
+
+/* Sidenav container sin fondo blanco */
+.mat-drawer-container {
+  background: var(--bg-dark) !important;
+}
+
+/* Table */
+.mat-mdc-table {
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+.mat-mdc-header-row {
+  background: rgba(255,255,255,0.04) !important;
+}
+
+.mat-mdc-header-cell {
+  color: var(--muted) !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid var(--glass-border) !important;
+}
+
+.mat-mdc-cell {
+  color: var(--text) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+  padding: 14px 16px !important;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+/* Form fields */
+.mat-mdc-form-field {
+  color: var(--text) !important;
+}
+
+.mdc-text-field--outlined .mdc-notched-outline__leading,
+.mdc-text-field--outlined .mdc-notched-outline__notch,
+.mdc-text-field--outlined .mdc-notched-outline__trailing {
+  border-color: var(--glass-border) !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):hover
+  .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):hover
+  .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):hover
+  .mdc-notched-outline__trailing {
+  border-color: var(--accent) !important;
+}
+
+.mdc-text-field--focused .mdc-notched-outline__leading,
+.mdc-text-field--focused .mdc-notched-outline__notch,
+.mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: var(--accent) !important;
+}
+
+.mat-mdc-form-field-label,
+.mdc-floating-label {
+  color: var(--muted) !important;
+}
+
+.mat-mdc-input-element {
+  color: var(--text) !important;
+  caret-color: var(--accent) !important;
+}
+
+/* Select panel */
+.mat-mdc-select-panel,
+.cdk-overlay-pane .mat-mdc-autocomplete-panel {
+  background: #161c18 !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.mat-mdc-option {
+  color: var(--text) !important;
+}
+
+.mat-mdc-option:hover,
+.mat-mdc-option.mat-mdc-option-active {
+  background: var(--glass-hover) !important;
+}
+
+.mat-mdc-select-value {
+  color: var(--text) !important;
+}
+
+.mat-mdc-select-arrow {
+  color: var(--muted) !important;
+}
+
+/* Date picker */
+.mat-datepicker-content {
+  background: #161c18 !important;
+  color: var(--text) !important;
+}
+
+.mat-calendar-body-cell-content,
+.mat-calendar-table-header th,
+.mat-calendar-body-label {
+  color: var(--text) !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: var(--accent) !important;
+  color: #0b0f0c !important;
+}
+
+/* Dialog */
+.mat-mdc-dialog-container {
+  background: #111612 !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: var(--radius-card) !important;
+}
+
+.mat-mdc-dialog-title,
+.mat-mdc-dialog-content {
+  color: var(--text) !important;
+}
+
+/* Snackbar */
+.snack-error .mdc-snackbar__surface {
+  background: #8b1a1a !important;
+}
+
+.snack-ok .mdc-snackbar__surface {
+  background: #1a4a1a !important;
+}
+
+.mat-mdc-snack-bar-label {
+  color: white !important;
+}
+
+/* Buttons */
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-unelevated-button.mat-primary {
+  background: var(--accent) !important;
+  color: #0b0f0c !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  border-radius: var(--radius-btn) !important;
+}
+
+.mat-mdc-button {
+  color: var(--muted) !important;
+}
+
+.mat-mdc-icon-button.mat-primary mat-icon {
+  color: var(--accent) !important;
+}
+
+.mat-mdc-icon-button.mat-warn mat-icon {
+  color: var(--danger) !important;
+}
+
+/* Checkbox */
+.mat-mdc-checkbox .mdc-checkbox__background {
+  border-color: var(--glass-border) !important;
+}
+
+.mat-mdc-checkbox.mat-primary .mdc-checkbox__background {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+}
+
+/* Chips */
+mat-chip, .mat-mdc-chip {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  border-radius: 20px !important;
+  padding: 4px 12px !important;
+}
+
+/* ============================================
+   CHIPS DE ESTADO — colores semánticos
+   ============================================ */
+.chip-salud-excelente { background: rgba(110,231,110,0.15) !important; color: #6ee76e !important; }
+.chip-salud-media     { background: rgba(255,200,80,0.15)  !important; color: #ffc850 !important; }
+.chip-salud-mala      { background: rgba(255,80,80,0.15)   !important; color: #ff5050 !important; }
+
+.chip-tipo-felino  { background: rgba(255,180,50,0.12) !important; color: #ffb432 !important; }
+.chip-tipo-reptil  { background: rgba(80,200,120,0.12) !important; color: #50c878 !important; }
+
+.chip-comida-carnes  { background: rgba(255,100,80,0.12)  !important; color: #ff6450 !important; }
+.chip-comida-plantas { background: rgba(100,220,100,0.12) !important; color: #64dc64 !important; }
+
+.chip-estado-pendiente { background: rgba(255,200,80,0.12) !important; color: #ffc850 !important; }
+.chip-estado-activa    { background: rgba(110,231,110,0.12)!important; color: #6ee76e !important; }
+.chip-estado-cancelada { background: rgba(255,80,80,0.12)  !important; color: #ff5050 !important; }
+
+.chip-activo   { background: rgba(110,231,110,0.12) !important; color: #6ee76e !important; }
+.chip-inactivo { background: rgba(255,80,80,0.12)   !important; color: #ff5050 !important; }
+
+/* ============================================
+   SCROLLBAR GLOBAL DARK
+   ============================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
